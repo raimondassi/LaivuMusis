@@ -6,12 +6,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-
 /**
  * Created by Raimondas on 2017.07.31.
  */
 public class AplinkaTest {
-
     Aplinka aplinkaGlobal;
 
 

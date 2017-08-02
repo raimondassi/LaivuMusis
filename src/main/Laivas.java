@@ -7,23 +7,26 @@ public class Laivas {
     int koordinateX, koordinateY;
     int getLaivoDydis;
     private int laivoDydis;
+    Laivas laivas;
 
 
     public Laivas(int koordinateX, int koordinateY, int laivoDydis) {
         this.laivoDydis = laivoDydis;
         this.koordinateX = koordinateX;
         this.koordinateY = koordinateY;
-        tikrinameArLaivasNeperzengiaKoordinaciu();
+        if (tikrinameArLaivasNeperzengiaKoordinaciu() == false) {
+            laivas = null;
+            // return null;
+        }
     }
 
 
-    public Laivas tikrinameArLaivasNeperzengiaKoordinaciu() {
-        if (koordinateX > 10 || koordinateY > 10) {return null;
+    public boolean tikrinameArLaivasNeperzengiaKoordinaciu() {
+        if (koordinateX > 10 || koordinateY > 10) {
+            return false;
+        } else {
+            return true;
         }
-        else{
-            return Laivas.this;
-        }
-
     }
 
 
