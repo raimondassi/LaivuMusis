@@ -4,29 +4,16 @@ package main;
  * Created by Raimondas on 2017.07.31.
  */
 public class LaivasImplementation implements Laivas {
-    int koordinateX, koordinateY;
+    int x, y, laivoDydis;
     Kryptis kryptis;
-    int getLaivoDydis;
-    private int laivoDydis;
 
 
-    public LaivasImplementation(int koordinateX, int koordinateY, int laivoDydis, Kryptis kryptis) {
+
+    public LaivasImplementation(int laivoDydis, int x, int y, Kryptis kryptis) {
         this.laivoDydis = laivoDydis;
-        this.koordinateX = koordinateX;
-        this.koordinateY = koordinateY;
-        this.kryptis=kryptis;
-
-
-        }
-
-
-
-    public boolean tikrinameArLaivasNeperzengiaKoordinaciu() {
-        if (koordinateX > 10 || koordinateY > 10) {
-            return false;
-        } else {
-            return true;
-        }
+        this.x = x;
+        this.y = y;
+        this.kryptis = kryptis;
     }
 
 
@@ -36,11 +23,11 @@ public class LaivasImplementation implements Laivas {
 
 
     public int gautiX() {
-        return koordinateX;
+        return x;
     }
 
 
     public int gautiY() {
-        return koordinateY;
+        return y;
     }
 }
