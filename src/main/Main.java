@@ -9,11 +9,14 @@ public class Main {
     public static void main(String[] args) {
 
       AplinkaImplementation aplinkaImplementation=new AplinkaImplementation();
-        aplinkaImplementation.padetiLaiva(4,6,6,Kryptis.HORIZONTAL);
-
 
 //kaip atspausdinti array kaip lentele
         System.out.println(Arrays.deepToString(aplinkaImplementation.lenta));
+        aplinkaImplementation.padetiLaiva(4, 6, 6, Kryptis.HORIZONTAL);
+        System.out.println(Arrays.deepToString(aplinkaImplementation.lenta));
+        aplinkaImplementation.padetiLaiva(2, 3, 3, Kryptis.VERTICAL);
+        System.out.println(Arrays.deepToString(aplinkaImplementation.lenta));
+
     }
 
 }
