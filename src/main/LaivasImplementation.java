@@ -6,9 +6,6 @@ package main;
 public class LaivasImplementation implements Laivas {
     int x, y, laivoDydis;
     Kryptis kryptis;
-    Laivas laivas;
-
-
 
 
     public LaivasImplementation(int laivoDydis, int x, int y, Kryptis kryptis) {
@@ -19,18 +16,20 @@ public class LaivasImplementation implements Laivas {
     }
 
 
-
-    public int gautiDydi() {
-        return laivoDydis;
-    }
-
-
+    @Override
     public int gautiX() {
         return x;
     }
 
 
+    @Override
     public int gautiY() {
         return y;
+    }
+
+
+    @Override
+    public int gautiDydi() {
+        return laivoDydis;
     }
 }

@@ -1,38 +1,26 @@
 package main;
 
+import org.omg.IOP.ExceptionDetailMessage;
+
+import java.beans.ExceptionListener;
+
 /**
  * Created by Raimondas on 2017.07.31.
  */
 public class AplinkaImplementation implements Aplinka {
-    int x, y, laivoDydis;
+    int laivoDydis, x, y;
     int laivuSkaicius;
-    Laivas[][] laivas;
+    Laivas[][] lenta;
     Kryptis kryptis;
     int gyvuLaivuSkaicius;
-    String[][] lenta;
+    Laivas laivas;
+    int keturvieciuLaivuKiekis;
+    int trivieciuLaivuKiekis;
+    int dvivieciuLaivuKiekis;
 
 
     public AplinkaImplementation() {
-        String[][] lenta = new String[11][11];
-        int stulpelioSkaicius = 0, eilutesSkaicius = 0;
-        for (int i = 0; i <= 10; i++) {
-            for (int k = 0; k <= 10; k++) {
-                if (i == 0 && k == 0) {
-                    lenta[i][k] = "";
-                }
-                if (i == 0 && k != 0) {
-                    stulpelioSkaicius++;
-                    lenta[i][k] = String.valueOf(stulpelioSkaicius);
-                }
-                if (i != 0 && k == 0) {
-                    eilutesSkaicius++;
-                    lenta[i][k] = String.valueOf(eilutesSkaicius);
-                }
-                if (i != 0 && k != 0) {
-                    lenta[i][k] = "*";
-                }
-            }
-        }
+        Laivas[][] lenta = new Laivas[10][10];
         this.lenta = lenta;
     }
 
@@ -43,88 +31,60 @@ public class AplinkaImplementation implements Aplinka {
         this.x = x;
         this.y = y;
         this.kryptis = kryptis;
-        LaivasImplementation naujasLaivas = new LaivasImplementation(laivoDydis, x, y, kryptis);
-        if (tikrinameArLaivasPerzengiaZaidimoLenta() == true) {
-            laivas = null;
-        }
-        if (laivas != null) {
-            laivuSkaicius++;
-        }
-        ipiesiameLaivaILenta();
-        return naujasLaivas;
-    }
-
-
-    public String[][] ipiesiameLaivaILenta() {
+        boolean arPavykoPadetiLaiva = false;
         if (kryptis == Kryptis.HORIZONTAL) {
-            int ilgis = laivoDydis;
-            for (int i = 0; i < ilgis; i++) {
-                lenta[x][y] = "L";
-                x--;
+            for (int i = 0; i < laivoDydis; i++) {
+                try {
+                    if (tikrinameArLaivaSusikerta() == false) {
+                        lenta[x][y] = laivas;
+                        x++;
+                        arPavykoPadetiLaiva = true;
+                    }
+                } catch (Exception e) {
+                    arPavykoPadetiLaiva = false;
+                    System.out.println("Laivo padeti nepavyko");
+                }
+            }
+            if (arPavykoPadetiLaiva = true) {
+                laivuSkaicius++;
             }
         }
-        if (kryptis == Kryptis.VERTICAL) {
-            int ilgis = laivoDydis;
-            for (int i = 0; i < ilgis; i++) {
-                lenta[x][y] = "L";
-                y--;
-            }
-        }
-        return lenta;
+        return padetiLaiva(laivoDydis, x, y, kryptis);
     }
 
 
-    public String[][] tikrinameArLaivaiNesusikerta() {
-        return lenta;
+    public boolean tikrinameArLaivaSusikerta() {
+        boolean susikirtimas = false;
+        if (lenta[x][y] != laivas) {
+            susikirtimas = true;
+        }
+        return susikirtimas;
     }
 
 
-    public boolean tikrinameArLaivasPerzengiaZaidimoLenta() {
-        if (x > 10 || y > 10) {
-            return true;
-        }
-        if (x < 0 || y < 0) {
-            return true;
-        }
-        if (kryptis == Kryptis.HORIZONTAL && (x + laivoDydis) > 10) {
-            return true;
-        }
-        if (kryptis == Kryptis.HORIZONTAL && (x + laivoDydis) < 1) {
-            return true;
-        }
-        if (kryptis == Kryptis.VERTICAL && (y + laivoDydis) > 10) {
-            return true;
-        }
-        if (kryptis == Kryptis.VERTICAL && (y + laivoDydis) < 1) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-
+    @Override
     public int gautiLaivuSkaiciu() {
-        return laivuSkaicius;
+        return 0;
     }
 
-////////laivus gal saugoti kazkaip kaip arskirus araay su reiksmemis????
+
     @Override
     public int gautiGyvuLaivuSkaiciu() {
         return gyvuLaivuSkaicius;
     }
 
-/////////////////?
+
     @Override
     public Laivas[][] gautiLenta() {
-        return new Laivas[0][];
+        return lenta;
     }
 
 
     @Override
     public boolean sauti(int x, int y) {
         boolean arPataikeme = false;
-        if (lenta[x][y] == "L") {
-            lenta[x][y] = "*";
+        if (lenta[x][y] != null) {
+            lenta[x][y] = null;
             arPataikeme = true;
         }
         return arPataikeme;

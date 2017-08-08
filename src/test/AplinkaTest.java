@@ -56,7 +56,7 @@ public class AplinkaTest {
     }
 
 
-    //sitas namu darbas
+
     @Test
     public void tikrintiArLaivuiPriskyreXIrYKoordinates() {
         LaivasImplementation laivas = aplinkaGlobal.padetiLaiva(2, 2, 4, VERTICAL);
@@ -65,7 +65,7 @@ public class AplinkaTest {
     }
 
 
-    //sitas namuDarbas
+
     @Test
     public void tikrinameArPaduotosKoordinatesNeiseinaUzLentosRibu() {
 
