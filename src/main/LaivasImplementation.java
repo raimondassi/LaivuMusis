@@ -6,6 +6,8 @@ package main;
 public class LaivasImplementation implements Laivas {
     int x, y, laivoDydis;
     Kryptis kryptis;
+    Laivas laivas;
+
 
 
 
@@ -15,6 +17,7 @@ public class LaivasImplementation implements Laivas {
         this.y = y;
         this.kryptis = kryptis;
     }
+
 
 
     public int gautiDydi() {
