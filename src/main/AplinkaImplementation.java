@@ -33,32 +33,42 @@ public class AplinkaImplementation implements Aplinka {
         this.kryptis = kryptis;
         boolean arPavykoPadetiLaiva = false;
         if (kryptis == Kryptis.HORIZONTAL) {
-            for (int i = 0; i < laivoDydis; i++) {
+            if (tikrinameArLaivaiSusikerta() && tikrinameArBandomeLaivaPadetiUzLentosRibu() == false) {
                 try {
-                    if (tikrinameArLaivaSusikerta() == false) {
+                    for (int i = 0; i < laivoDydis; i++) {
                         lenta[x][y] = laivas;
                         x++;
                         arPavykoPadetiLaiva = true;
-                    }
-                } catch (Exception e) {
+                    }}
+                 catch (ArrayIndexOutOfBoundsException e) {
                     arPavykoPadetiLaiva = false;
-                    System.out.println("Laivo padeti nepavyko");
+                    System.out.println("Laivo padeti nepavyko: laivas uzeina uz lentos ribu");
                 }
             }
             if (arPavykoPadetiLaiva = true) {
                 laivuSkaicius++;
-            }
+            } else System.out.println("Laiva dedate uz lentos ribu arba keli laivai kertasi");
         }
         return padetiLaiva(laivoDydis, x, y, kryptis);
     }
 
 
-    public boolean tikrinameArLaivaSusikerta() {
-        boolean susikirtimas = false;
+    public boolean tikrinameArLaivaiSusikerta() {
         if (lenta[x][y] != laivas) {
-            susikirtimas = true;
-        }
-        return susikirtimas;
+            return true;
+        } else return false;
+    }
+
+
+    public boolean tikrinameArBandomeLaivaPadetiUzLentosRibu() {
+        if (x > 10 || x < 0 || y > 10 || y < 0) {
+            return true;
+        } else return false;
+    }
+
+
+    public boolean patikrinameArLaivasUzeinaUzLentosRibu() {
+        return false;
     }
 
 
